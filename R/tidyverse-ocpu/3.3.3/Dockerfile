@@ -12,23 +12,21 @@ r-base r-base-dev libapparmor-dev libcurl4-openssl-dev libprotobuf-dev \
 protobuf-compiler xvfb xauth xfonts-base curl libssl-dev libxml2-dev libicu-dev \
 pkg-config libssh2-1-dev net-tools
 
-RUN cd ~ \
+RUN mkdir ~/tempdir && cd ~/tempdir \
 && wget https://github.com/jeffreyhorner/rapache/archive/v1.2.8.tar.gz \
 && tar xzf v1.2.8.tar.gz \
 && cd rapache-1.2.8 \
-&& dpkg-buildpackage -us -uc
-
-RUN cd ~ \
+&& dpkg-buildpackage -us -uc \
+&& cd ~/tempdir \
 && wget https://github.com/jeroenooms/opencpu-server/archive/v1.6.tar.gz \
 && tar xzf v1.6.tar.gz \
 && cd opencpu-server-1.6 \
-&& dpkg-buildpackage -us -uc
-
-RUN cd ~ \
+&& dpkg-buildpackage -us -uc \
+&& cd ~/tempdir \
 && sudo dpkg -i libapache2-mod-r-base_*.deb \
 && sudo dpkg -i opencpu-lib_*.deb \
-&& sudo dpkg -i opencpu-server_*.deb
-
+&& sudo dpkg -i opencpu-server_*.deb \
+&& cd ~/ && rm -r ~/tempdir
 
 # Apache ports
 EXPOSE 80
