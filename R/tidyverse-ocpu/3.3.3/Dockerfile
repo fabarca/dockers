@@ -28,6 +28,8 @@ RUN mkdir ~/tempdir && cd ~/tempdir \
 && sudo dpkg -i opencpu-server_*.deb \
 && cd ~/ && rm -r ~/tempdir
 
+RUN export ADD=shiny && bash /etc/cont-init.d/add
+
 # Apache ports
 EXPOSE 80
 EXPOSE 443
