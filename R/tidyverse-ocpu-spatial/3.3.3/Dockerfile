@@ -1,4 +1,4 @@
-FROM fabarca/tidyverse-ocpu:3.3.3
+FROM fabarca/tidyverse-ocpu-test:3.3.3
 
 # Reference:
 # https://github.com/rocker-org/geospatial/blob/master/3.3.3/Dockerfile
