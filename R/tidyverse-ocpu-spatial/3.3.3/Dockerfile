@@ -1,4 +1,4 @@
-FROM fabarca/tidyverse-ocpu-test:3.3.3
+FROM fabarca/tidyverse-ocpu:3.3.3
 
 # Reference:
 # https://github.com/rocker-org/geospatial/blob/master/3.3.3/Dockerfile
@@ -11,6 +11,7 @@ ENV LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
 RUN apt-get update \
 ##  && apt-get build-dep -y -o APT::Get::Build-Dep-Automatic=true libgdal-dev \
   && apt-get install -y --no-install-recommends \
+    libv8-3.14-dev \
     lbzip2 \
     ## dev packages
     libdap-dev \
@@ -82,6 +83,7 @@ RUN install2.r --error \
     gstat \
     lidR \
     leaflet \
+    geojsonio \
     maptools \
     ncdf4 \
     proj4 \
