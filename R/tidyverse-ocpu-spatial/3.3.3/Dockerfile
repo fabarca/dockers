@@ -11,7 +11,7 @@ ENV LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
 RUN apt-get update \
 ##  && apt-get build-dep -y -o APT::Get::Build-Dep-Automatic=true libgdal-dev \
   && apt-get install -y --no-install-recommends \
-    libv8-dev
+    libv8-dev \
 #    libv8-3.14-dev \
     lbzip2 \
     ## dev packages
