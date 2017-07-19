@@ -56,8 +56,10 @@ RUN Rscript -e "install.packages(c( \
 'rlas', \
 'rmapshaper', \
 'roxygen2', \
-'RColorBrewer', \
 'RandomFields', \
+'RColorBrewer', \
+'RSQLite', \
+'RMySQL', \
 'sf', \
 'sp', \
 'spacetime', \
