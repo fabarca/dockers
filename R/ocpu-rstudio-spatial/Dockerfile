@@ -4,6 +4,7 @@ FROM opencpu/rstudio
 RUN add-apt-repository -y ppa:ubuntugis/ppa && \
     apt-get update && \
     apt-get install -y \
+    wget \
     lbzip2 \
     libdap-dev \
     libexpat1-dev \
@@ -29,6 +30,23 @@ RUN add-apt-repository -y ppa:ubuntugis/ppa && \
     libxerces-c-dev \
     netcdf-bin \
     unixodbc-dev
+
+
+# Install wgrib2 binary
+# Ref: http://www.cpc.ncep.noaa.gov/products/wesley/wgrib2/compile_questions.html
+
+RUN cd /tmp && \
+    wget ftp://ftp.cpc.ncep.noaa.gov/wd51we/wgrib2/wgrib2.tgz && \
+    tar -xzvf wgrib2.tgz && \
+    cd /tmp/grib2 && \
+    export CC=gcc && \
+    export FC=gfortran && \
+    make && \
+    cp wgrib2/wgrib2 /usr/local/bin/wgrib2 && \
+    cd .. && \
+    rm -r grib2 wgrib2.tgz
+
+
 
 
 ## Install R packages
