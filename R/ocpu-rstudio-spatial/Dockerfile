@@ -29,6 +29,7 @@ RUN add-apt-repository -y ppa:ubuntugis/ppa && \
     libv8-dev \
     libxerces-c-dev \
     netcdf-bin \
+    protobuf-compiler \
     unixodbc-dev
 
 
@@ -67,6 +68,7 @@ RUN Rscript -e "install.packages(c( \
 'ncdf4', \
 'proj4', \
 'postGIStools', \
+'plotly', \
 'rasterVis', \
 'raster', \
 'rgdal', \
