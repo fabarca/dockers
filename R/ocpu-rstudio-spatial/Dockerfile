@@ -2,8 +2,10 @@ FROM opencpu/rstudio
 
 
 RUN add-apt-repository -y ppa:ubuntugis/ppa && \
+    add-apt-repository -y ppa:opencpu/jq && \
     apt-get update && \
     apt-get install -y \
+    libjq-dev \
     wget \
     lbzip2 \
     libdap-dev \
