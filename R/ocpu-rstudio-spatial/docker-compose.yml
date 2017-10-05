@@ -1,0 +1,9 @@
+version: '3'
+services:
+  rstudio:
+    image: fabarca/ocpu-rstudio-spatial
+    ports:
+     - "8000:80"
+#    - "8004:8004"
+    volumes:
+     - .:/home/opencpu/myfolder
