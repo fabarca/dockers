@@ -89,8 +89,13 @@ RUN Rscript -e "install.packages(c( \
 'spdep', \
 'splancs', \
 'testthat', \
-'tidyverse' \
-), repos='https://cran.r-project.org/'); \
+'devtools', \
+'dplyr', \
+'tidyverse', \
+'future', \
+'nnet', \
+'caret' \
+), repos='https://cloud.r-project.org/'); \
 source('https://bioconductor.org/biocLite.R'); \
 biocLite('BiocInstaller'); \
 BiocInstaller::biocLite('rhdf5')"
