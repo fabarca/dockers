@@ -31,6 +31,7 @@ RUN add-apt-repository -y ppa:ubuntugis/ppa && \
     libv8-dev \
     libxerces-c-dev \
     netcdf-bin \
+    gdal-bin \
     protobuf-compiler \
     unixodbc-dev
 
@@ -55,10 +56,12 @@ RUN cd /tmp && \
 ## Install R packages
 
 RUN Rscript -e "install.packages(c( \
+'automap', \
 'deldir', \
 'DCluster', \
 'classInt', \
 'fastcluster', \
+'gdalUtils', \
 'geojsonio', \
 'geoR', \
 'geosphere', \
@@ -90,6 +93,8 @@ RUN Rscript -e "install.packages(c( \
 'splancs', \
 'testthat', \
 'devtools', \
+'usethis', \
+'checkmate', \
 'dplyr', \
 'tidyverse', \
 'future', \
