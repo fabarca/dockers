@@ -8,6 +8,7 @@ RUN add-apt-repository -y ppa:ubuntugis/ppa && \
     libjq-dev \
     wget \
     lbzip2 \
+    libcairo2-dev \
     libdap-dev \
     libexpat1-dev \
     libfftw3-dev \
@@ -33,7 +34,9 @@ RUN add-apt-repository -y ppa:ubuntugis/ppa && \
     netcdf-bin \
     gdal-bin \
     protobuf-compiler \
-    unixodbc-dev
+    unixodbc-dev \
+    python-pip \
+    python-virtualenv
 
 
 # Install wgrib2 binary
@@ -99,6 +102,7 @@ RUN Rscript -e "install.packages(c( \
 'tidyverse', \
 'future', \
 'nnet', \
+'keras', \
 'caret' \
 ), repos='https://cloud.r-project.org/'); \
 source('https://bioconductor.org/biocLite.R'); \
@@ -106,5 +110,5 @@ biocLite('BiocInstaller'); \
 BiocInstaller::biocLite('rhdf5')"
 
 
-
+RUN Rscript -e "library(keras); install_keras()"
 
