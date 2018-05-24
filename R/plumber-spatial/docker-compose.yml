@@ -1,0 +1,18 @@
+version: '3'
+services:
+  plumber:
+    image: fabarca/plumber-spatial
+#    volumes:
+#       - ./app:/app:ro
+#    command: ["/app/plumber.R"]
+  lb:
+    image: 'dockercloud/haproxy'
+    links:
+      - plumber
+    environment:
+      - TIMEOUT=connect 10000,client 120000,server 120000
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - "7000:80"
+ 
