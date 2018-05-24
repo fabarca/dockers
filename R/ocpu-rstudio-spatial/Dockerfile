@@ -109,6 +109,10 @@ source('https://bioconductor.org/biocLite.R'); \
 biocLite('BiocInstaller'); \
 BiocInstaller::biocLite('rhdf5')"
 
+RUN mkdir /opt/virtualenvs && \
+    chmod +rx /opt/virtualenvs && \
+    echo "WORKON_HOME=\"/opt/virtualenvs\"" >> /etc/R/Renviron
+
 
 RUN Rscript -e "library(keras); install_keras()"
 
