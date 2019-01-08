@@ -1,4 +1,4 @@
-FROM opencpu/rstudio
+FROM fabarca/ocpu-rstudio
 
 
 RUN add-apt-repository -y ppa:ubuntugis/ppa && \
@@ -36,7 +36,8 @@ RUN add-apt-repository -y ppa:ubuntugis/ppa && \
     protobuf-compiler \
     unixodbc-dev \
     python-pip \
-    python-virtualenv
+    python-virtualenv \
+    libgtk2.0-dev xvfb xauth xfonts-base libxt-dev
 
 
 # Install wgrib2 binary
@@ -58,12 +59,43 @@ RUN cd /tmp && \
 
 ## Install R packages
 
+# devtools::install_version('rgeos', version = '0.3-28'); \
+# main packages
 RUN Rscript -e "install.packages(c( \
+'checkmate', \
+'devtools', \
+'future', \
+'knitr', \
+'rmarkdown', \
+'roxygen2', \
+'RColorBrewer', \
+'RMySQL', \
+'RPostgreSQL', \
+'RSQLite', \
+'shiny', \
+'testthat', \
+'tidyverse', \
+'usethis' \
+), repos='https://cloud.r-project.org/');"
+
+# stats packages
+RUN Rscript -e "install.packages(c( \
+'caret', \
+'fastcluster', \
+'keras', \
+'nnet', \
+'plotly', \
+'randomForest', \
+'robustbase' \
+), repos='https://cloud.r-project.org/');"
+
+
+
+RUN Rscript -e "install.packages(c( \ 
 'automap', \
 'deldir', \
 'DCluster', \
 'classInt', \
-'fastcluster', \
 'gdalUtils', \
 'geojsonio', \
 'geoR', \
@@ -76,38 +108,23 @@ RUN Rscript -e "install.packages(c( \
 'ncdf4', \
 'proj4', \
 'postGIStools', \
-'plotly', \
 'rasterVis', \
 'raster', \
 'rgdal', \
 'rgeos', \
 'rlas', \
 'rmapshaper', \
-'roxygen2', \
 'RandomFields', \
-'RColorBrewer', \
-'RSQLite', \
-'RMySQL', \
 'sf', \
 'sp', \
 'spacetime', \
 'spatstat', \
 'spdep', \
-'splancs', \
-'testthat', \
-'devtools', \
-'usethis', \
-'checkmate', \
-'dplyr', \
-'tidyverse', \
-'future', \
-'nnet', \
-'keras', \
-'caret' \
+'splancs' \
 ), repos='https://cloud.r-project.org/'); \
 source('https://bioconductor.org/biocLite.R'); \
 biocLite('BiocInstaller'); \
-BiocInstaller::biocLite('rhdf5')"
+BiocInstaller::biocLite('rhdf5');"
 
 RUN mkdir /opt/virtualenvs && \
     chmod +rx /opt/virtualenvs && \
