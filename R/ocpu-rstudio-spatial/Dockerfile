@@ -1,4 +1,4 @@
-FROM fabarca/ocpu-rstudio
+FROM opencpu/ubuntu-16.04
 
 
 RUN add-apt-repository -y ppa:ubuntugis/ppa && \
@@ -93,6 +93,7 @@ RUN Rscript -e "install.packages(c( \
 
 RUN Rscript -e "install.packages(c( \ 
 'automap', \
+'BiocManager', \
 'deldir', \
 'DCluster', \
 'classInt', \
@@ -122,9 +123,7 @@ RUN Rscript -e "install.packages(c( \
 'spdep', \
 'splancs' \
 ), repos='https://cloud.r-project.org/'); \
-source('https://bioconductor.org/biocLite.R'); \
-biocLite('BiocInstaller'); \
-BiocInstaller::biocLite('rhdf5');"
+BiocManager::install('rhdf5');"
 
 RUN mkdir /opt/virtualenvs && \
     chmod +rx /opt/virtualenvs && \
